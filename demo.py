@@ -1,5 +1,5 @@
 import pygame
-from xbox_360_controller import XBox360Controller
+from xbox360_controller import XBox360Controller
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -20,8 +20,7 @@ FPS = 30
 clock = pygame.time.Clock()
 
 
-
-# make a controller (should this be in loop?)
+# make a controller (should this be in the game loop?)
 controller = XBox360Controller(0)
 
 
@@ -39,13 +38,14 @@ while not done:
         if event.type == pygame.QUIT:
             done=True
 
+    # joystick stuff
     a_btn = controller.a()
     b_btn = controller.b()
     x_btn = controller.x()
     y_btn = controller.y()
     back = controller.back()
     start = controller.start()
-    lt_bump= controller.left_bumper()
+    lt_bump = controller.left_bumper()
     rt_bump = controller.right_bumper()
     triggers = controller.triggers()
     lt_stick = controller.left_stick_axes()
@@ -191,5 +191,6 @@ while not done:
 
     # limit refresh rate
     clock.tick(FPS)
-    
+
+# close window on quit
 pygame.quit ()

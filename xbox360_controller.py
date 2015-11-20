@@ -15,7 +15,7 @@ driver could be different.
 
 http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver#toc1ss
 
-* On Linux, only wired controllers use axes for the hat; wireless use buttons. Wireless support
+* On linux, only wired controllers use axes for the hat, wireless use buttons. Wireless support
   not included yet.
 
 '''
@@ -111,13 +111,7 @@ class XBox360Controller:
         self.right_trigger_used = False
         
     def dead_zone_adjust(self, value):
-	"""
-	Proportionally adjusts axis values on sticks so that areas outside deadzone 
-        still return values from 0.0 to 1.0. For example, if the deadzone is set to 
-        0.15, then an axis value of 0.15 or less will return 0, and 1.0 will return 1.0. 
-	"""
-        
-	if value > self.dead_zone:
+        if value > self.dead_zone:
             return (value - self.dead_zone) / (1 - self.dead_zone)
         elif value < -self.dead_zone:
             return (value + self.dead_zone) / (1 - self.dead_zone)
