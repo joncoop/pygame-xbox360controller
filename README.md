@@ -24,30 +24,22 @@ Windows 7
 
 1. Download the xbox360controller class to your game folder and import into your game.
 
-        ```
         from xbox360_controller import XBox360Controller
-        ```
 
 2. Create a controller object.
 
-        ```
         controller = XBox360Controller(0)
-        ```
 
 3. Get the controller values.
 
-        ```
         back = controller.back()
         start = controller.start()
         lt_stick = controller.left_stick_axes()
-        ```
 
 4. Make something awesome!
 
-        ```
         if start == 1:
             playing = True
-        ```
 
 See simple_game_template.py for an example of usage within a pygame project.
 
