@@ -1,3 +1,11 @@
+#  Copyright (c) 2015 Jon Cooper
+#   
+#  This file is part of pygame-xbox360controller.
+#  Documentation, related files, and licensing can be found at
+# 
+#      <https://github.com/joncoop/pygame-xbox360controller>.
+
+
 import pygame
 
 # Colors

@@ -1,24 +1,10 @@
-'''
-Unified XBox360 wired* controller interface for Python with Pygame.
+#  Copyright (c) 2015 Jon Cooper
+#   
+#  This file is part of pygame-xbox360controller.
+#  Documentation, related files, and licensing can be found at
+# 
+#      <https://github.com/joncoop/pygame-xbox360controller>.
 
-Versions:
-Python 3.4.3
-Pygame 1.9.2, SDL (1, 2, 15)
-
-Tested on:
-Mac OSX 10.9.5
-Ubuntu 15.04
-Windows 7
-
-Mac OSX does not have native controller support. The following driver was used. Mapping to another
-driver could be different.
-
-http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver#toc1ss
-
-* On linux, only wired controllers use axes for the hat, wireless use buttons. Wireless support
-  not included yet.
-
-'''
 
 import pygame
 import sys

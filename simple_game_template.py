@@ -1,8 +1,10 @@
-# Simple Game
-#
-# This game doesn't do much. Press start to play. Then move the ball with the left
-# stick. Pressing back resets. Fun? Not really. But now you see how to use the controller.
-# Go make something interesting.
+#  Copyright (c) 2015 Jon Cooper
+#   
+#  This file is part of pygame-xbox360controller.
+#  Documentation, related files, and licensing can be found at
+# 
+#      <https://github.com/joncoop/pygame-xbox360controller>.
+
 
 import pygame
 from xbox360_controller import XBox360Controller

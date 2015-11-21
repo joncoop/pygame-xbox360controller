@@ -1,3 +1,11 @@
+#  Copyright (c) 2015 Jon Cooper
+#   
+#  This file is part of pygame-xbox360controller.
+#  Documentation, related files, and licensing can be found at
+# 
+#      <https://github.com/joncoop/pygame-xbox360controller>.
+
+
 import pygame
 from xbox360_controller import XBox360Controller
 
@@ -9,7 +17,6 @@ BLUE = (65, 65, 255)
 AMBER = (255, 175, 0)
 GREY = (175, 175, 175)
 
-
 pygame.init()
 
 size = [600, 670]
@@ -19,10 +26,8 @@ pygame.display.set_caption("X-Box 360 Controller")
 FPS = 30
 clock = pygame.time.Clock()
 
-
 # make a controller (should this be in the game loop?)
 controller = XBox360Controller(0)
-
 
 def display_text(screen, text, x, y):
     my_font = pygame.font.Font(None, 30)
@@ -37,6 +42,7 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done=True
+
 
     # joystick stuff
     a_btn = controller.a()
@@ -103,7 +109,6 @@ while not done:
     else:
         pygame.draw.ellipse(screen, WHITE, [x + 95, y, 25, 20], 2)
 
-
     ''' bumpers '''
     x, y = 100, 50
     
@@ -162,7 +167,6 @@ while not done:
         pygame.draw.ellipse(screen, GREY, [x + 40, y, 20, 20])
     elif hat[1] == 1:
         pygame.draw.ellipse(screen, GREY, [x + 40, y +80, 20, 20])
-
 
     ''' joystick values '''
     x, y = 50, 370
