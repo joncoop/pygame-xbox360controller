@@ -13,30 +13,37 @@ driver could be different.
 
 ## Tested on:
 
-* Python 3.4.3
-* Pygame 1.9.2, SDL (1, 2, 15)
+Python 3.4.3 with
+Pygame 1.9.2, SDL (1, 2, 15)
 
-* Mac OSX 10.9.5
-* Ubuntu 15.04
-* Windows 7
+Mac OSX 10.9.5,
+Ubuntu 15.04,
+Windows 7
 
 ## Usage
 
 1. Download the xbox360controller class to your game folder and import into your game.
+
         ```
         from xbox360_controller import XBox360Controller
         ```
+
 2. Create a controller object.
+
         ```
         controller = XBox360Controller(0)
         ```
+
 3. Get the controller values.
+
         ```
         back = controller.back()
         start = controller.start()
         lt_stick = controller.left_stick_axes()
         ```
+
 4. Make something awesome!
+
         ```
         if start == 1:
             playing = True
