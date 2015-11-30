@@ -85,8 +85,8 @@ class XBox360Controller:
             # axes
             self.LEFT_STICK_X = 0
             self.LEFT_STICK_Y = 1
-            self.RIGHT_STICK_X = 3
-            self.RIGHT_STICK_Y = 4
+            self.RIGHT_STICK_X = 4
+            self.RIGHT_STICK_Y = 3
             self.TRIGGERS = 2
 
         self.joystick = pygame.joystick.Joystick(num)
