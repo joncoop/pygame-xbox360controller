@@ -29,6 +29,8 @@ controller = XBox360Controller(0)
 ball_pos = [290, 290]
 ball_radius = 10
 
+ball_pos2 =[250, 250]
+
 # game loop
 playing = False
 done = False
@@ -43,6 +45,7 @@ while not done:
     back = controller.back()
     start = controller.start()
     lt_stick = controller.left_stick_axes()
+    rt_stick = controller.right_stick_axes()
 
     # game logic
     if not playing:
@@ -56,10 +59,14 @@ while not done:
     if playing:
         ball_pos[0] += int(lt_stick[0] * 10)
         ball_pos[1] += int(lt_stick[1] * 10)
+        
+        ball_pos2[0] += int(rt_stick[0] * 10)
+        ball_pos2[1] += int(rt_stick[1] * 10)
 
     # drawing
     screen.fill(BLACK)
     pygame.draw.circle(screen, WHITE, (ball_pos[0], ball_pos[1]), ball_radius)
+    pygame.draw.circle(screen, (0, 255, 0), (ball_pos2[0], ball_pos2[1]), ball_radius)
 
     # update screen
     pygame.display.flip()
