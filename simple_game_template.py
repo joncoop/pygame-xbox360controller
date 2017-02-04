@@ -22,7 +22,6 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Simple Game")
 FPS = 30
 clock = pygame.time.Clock()
-background_color = BLACK
 
 # make a controller
 controller = xbox360_controller.Controller(0)
@@ -69,7 +68,7 @@ while not done:
         ball_pos[1] += int(left_y * 10)
 
     # drawing
-    screen.fill(background_color)
+    screen.fill(BLACK)
     pygame.draw.circle(screen, ball_color, ball_pos, ball_radius)
 
     # update screen
