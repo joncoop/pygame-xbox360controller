@@ -20,7 +20,7 @@ RED = (255, 0, 0)
 size = [600, 600]
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Simple Game")
-FPS = 30
+FPS = 60
 clock = pygame.time.Clock()
 
 # make a controller
@@ -64,8 +64,8 @@ while not done:
 
     # game logic
     if playing:
-        ball_pos[0] += int(left_x * 10)
-        ball_pos[1] += int(left_y * 10)
+        ball_pos[0] += int(left_x * 5)
+        ball_pos[1] += int(left_y * 5)
 
     # drawing
     screen.fill(BLACK)
