@@ -6,8 +6,7 @@ This is a unified XBox360 wired controller for use with Python3 with Pygame. It 
 
 Python 3 with Pygame
 
-Mac OSX does not have native controller support. The following driver was used. Mapping to another
-driver could be different.
+Mac OSX does not have native controller support. The following driver was used. Mapping to another driver could be different.
 
 [http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver#toc1ss](http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver#toc1ss)
 
@@ -17,29 +16,27 @@ Python 3.4.3 with
 Pygame 1.9.2, SDL (1, 2, 15)
 
 Mac OSX 10.9.5,
-Ubuntu 15.04,
+Ubuntu 15.04, 16.04
 Windows 7
 
 ## Usage
 
 1. Download the xbox360controller class to your game folder and import into your game.
 
-        from xbox360_controller import XBox360Controller
+        import xbox360_controller
 
 2. Create a controller object.
 
-        controller = XBox360Controller(0)
+        controller = xbox360_controller.Controller(0)
 
 3. Get the controller values.
 
-        back = controller.back()
-        start = controller.start()
-        lt_stick = controller.left_stick_axes()
+        pressed = controller.get_buttons()
 
 4. Make something awesome!
 
-        if start == 1:
-            playing = True
+        if pressed[xbox360_controller.START]:
+            play()
 
 See simple_game_template.py for an example of usage within a pygame project.
 

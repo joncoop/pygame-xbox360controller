@@ -1,4 +1,4 @@
-#  Copyright (c) 2015 Jon Cooper
+#  Copyright (c) 2017 Jon Cooper
 #   
 #  This file is part of pygame-xbox360controller.
 #  Documentation, related files, and licensing can be found at
@@ -7,13 +7,14 @@
 
 
 import pygame
-from xbox360_controller import XBox360Controller
+import xbox360_controller
 
 pygame.init()
 
 # define some colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+RED = (255, 0, 0)
 
 # window settings
 size = [600, 600]
@@ -21,13 +22,15 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Simple Game")
 FPS = 30
 clock = pygame.time.Clock()
+background_color = BLACK
 
 # make a controller
-controller = XBox360Controller(0)
+controller = xbox360_controller.Controller(0)
 
 # make a ball
 ball_pos = [290, 290]
 ball_radius = 10
+ball_color = WHITE
 
 # game loop
 playing = False
@@ -39,27 +42,35 @@ while not done:
         if event.type == pygame.QUIT:
             done=True
 
-    # joystick stuff
-    back = controller.back()
-    start = controller.start()
-    lt_stick = controller.left_stick_axes()
+        if event.type == pygame.JOYBUTTONDOWN:
+            # handle events for all controllers
+            if not playing:
+                if event.button == xbox360_controller.START:
+                    playing = True
+            else:
+                if event.button == xbox360_controller.BACK:
+                    playing = False
+                    ball_pos = [290, 290]
+
+            # handle events for specific controllers
+            if event.joy == controller.get_id():
+                if event.button == xbox360_controller.A:
+                    if ball_color == WHITE:
+                        ball_color = RED
+                    else:
+                        ball_color = WHITE
+
+    # handle joysticks
+    left_x, left_y = controller.get_left_stick()
 
     # game logic
-    if not playing:
-        if start == 1:
-            playing = True
-    else:
-        if back == 1:
-            playing = False
-            ball_pos = [290, 290]
-
     if playing:
-        ball_pos[0] += int(lt_stick[0] * 10)
-        ball_pos[1] += int(lt_stick[1] * 10)
+        ball_pos[0] += int(left_x * 10)
+        ball_pos[1] += int(left_y * 10)
 
     # drawing
-    screen.fill(BLACK)
-    pygame.draw.circle(screen, WHITE, (ball_pos[0], ball_pos[1]), ball_radius)
+    screen.fill(background_color)
+    pygame.draw.circle(screen, ball_color, ball_pos, ball_radius)
 
     # update screen
     pygame.display.flip()
