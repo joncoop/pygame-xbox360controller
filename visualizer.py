@@ -43,7 +43,6 @@ while not done:
         if event.type == pygame.QUIT:
             done=True
 
-
     # joystick stuff
     pressed = controller.get_buttons()
 
@@ -74,7 +73,6 @@ while not done:
 
     ''' controller outline '''
     pygame.draw.rect(screen, GREY, [40, 20, 520, 320], 3)
-    
 
     ''' a, b, x, y '''
     x, y = 450, 120
@@ -98,7 +96,6 @@ while not done:
         pygame.draw.ellipse(screen, AMBER, [x + 30, y, 25, 25])
     else:
         pygame.draw.ellipse(screen, AMBER, [x + 30, y, 25, 25], 2)
-
 
     ''' back, start '''
     x, y = 250, 145
@@ -201,8 +198,8 @@ while not done:
 
     pygame.display.flip()
 
-
-    # limit refresh rate
+    # update screen
+    pygame.display.flip()
     clock.tick(FPS)
 
 # close window on quit
