@@ -23,7 +23,7 @@ size = [600, 670]
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("X-Box 360 Controller")
 
-FPS = 30
+FPS = 60
 clock = pygame.time.Clock()
 
 # make a controller (should this be in the game loop?)
