@@ -64,19 +64,19 @@ On Linux and Windows systems, only Python 3 with Pygame is needed. Mac OSX does 
 
 ## Files:
 
-- `xbox360_controller.py`
+#### xbox360_controller.py
 
   This file contains the `Controller` class which can be used in Pygame projects.
 
-- `visualizer.py`
+#### visualizer.py
 
   See the values returned by an `xbox360_controller` object on a graphical mockup of the controller.
 
-- `simple_game.py`
+#### simple_game.py
 
   This demonstrates basic usage of the `xbox360_controller` class and can be used as a template for a game. Press 'start' to begin the game. The ball is controlled by the left stick. The 'A' button changes the ball's color. Pressing 'back' resets the game.
 
-- `test.py`
+#### test.py
 
   Plug in a controller and check out the raw values returned by each button/axis. This is just slightly modified example code from the official [Pygame joystick documentation](https://www.pygame.org/docs/ref/joystick.html). The `xbox360_controller` class is not used here. Rather, it is a useful tool to see how inputs are mapped on different platforms.
 
