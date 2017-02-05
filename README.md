@@ -17,7 +17,7 @@ Mac OSX does not have native controller support. The following driver was used. 
 
 - Mac OSX 10.9.5,
 - Ubuntu 15.04, 16.04
-- Windows 7
+- Windows 7, 8
 
 ## Usage
 
@@ -35,8 +35,23 @@ Mac OSX does not have native controller support. The following driver was used. 
 
 3. Get the controller values.
 
+  To get button values, use the `get_buttons()` function which returns a sequence of boolean values representing the state of every button on the controller. Use the button constant values to index the array. A True value means the that button is pressed.
+
   ```python
   pressed = controller.get_buttons()
+  ```
+
+  Each analog stick returns a tuple containing the `x` and `y` values of the axis. The values are in the range -1 <= value <= 1 where negative values represent the left and up directions and positive values represent down and right directions.
+
+  ```python
+  lt_x, rt_x = controller.get_left_stick()
+  rt_x, rt_x = controller.get_left_stick()
+  ```
+
+  The `get_triggers()` function returns a single value indicating the direction of the triggers. -1 indicates full left trigger and 1 indicates full right trigger. Note that triggers are additive. Therefore pulling both triggers fully together will result in a value of zero.
+
+  ```python
+  triggers = controller.get_triggers()
   ```
 
 4. Make something awesome!
