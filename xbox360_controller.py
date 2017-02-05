@@ -1,8 +1,8 @@
 #  Copyright (c) 2017 Jon Cooper
-#   
+#
 #  This file is part of pygame-xbox360controller.
 #  Documentation, related files, and licensing can be found at
-# 
+#
 #      <https://github.com/joncoop/pygame-xbox360controller>.
 
 
@@ -88,7 +88,7 @@ elif platform_id == MAC:
     RIGHT_TRIGGER = 5
 
 class Controller:
-    
+
     def __init__(self, num):
 
         self.joystick = pygame.joystick.Joystick(num)
@@ -165,7 +165,7 @@ class Controller:
         Negative values are left and up.
         Positive values are right and down.
         """
-        
+
         left_stick_x = self.dead_zone_adjust(self.joystick.get_axis(LEFT_STICK_X))
         left_stick_y = self.dead_zone_adjust(self.joystick.get_axis(LEFT_STICK_Y))
 
@@ -183,30 +183,32 @@ class Controller:
 
         right_stick_x = self.dead_zone_adjust(self.joystick.get_axis(RIGHT_STICK_X))
         right_stick_y = self.dead_zone_adjust(self.joystick.get_axis(RIGHT_STICK_Y))
-            
+
         return (right_stick_x, right_stick_y)
 
     def get_triggers(self):
         """
-        The triggers also form an axis. Full left trigger returns -1 and full right returns +1.
-        If the triggers are pulled simultaneously, then the sum of the trigger pulls is returned.
+        The triggers also form an axis. Full left trigger returns -1.0 and full
+        right returns +1.0. If the triggers are pulled simultaneously, then the
+        sum of the trigger pulls is returned.
 
         Notes:
-        On Windows, both triggers work additively to return a single axis, whereas triggers on
-        Linux and Mac function as independent axes. In this interface, triggers will behave
-        additively for all platforms so that pygame controllers will work consistently on each
-        platform.
-        
-        Also note that the value returned is on windows is multiplied by -1 so that negative is to
-        the left and positive to the right to be consistent with stick axes.
+        On Windows, both triggers work additively to return a single axis, whereas
+        triggers on Linux and Mac function as independent axes. In this interface,
+        triggers will behave additively for all platforms so that pygame controllers
+        will work consistently on each platform.
 
-        On Linux and Mac, trigger axes return 0 if they haven't been used yet. Once used, an unpulled
-        trigger returns 1 and pulled returns -1. The trigger_used booleans keep the math right for
-        triggers prior to use.
+        Also note that the value returned is on Windows is multiplied by -1 so that
+        negative is to the left and positive to the right to be consistent with
+        stick axes.
+
+        On Linux and Mac, trigger axes return 0 if they haven't been used yet. Once
+        used, an unpulled trigger returns 1 and pulled returns -1. The trigger_used
+        booleans keep the math right for triggers prior to use.
         """
 
         trigger_axis = 0.0
-        
+
         if platform_id == LINUX or platform_id == MAC:
             left = self.joystick.get_axis(LEFT_TRIGGER)
             right = self.joystick.get_axis(RIGHT_TRIGGER)
@@ -220,18 +222,19 @@ class Controller:
                 left = -1
             if not self.right_trigger_used:
                 right = -1
-                
+
             trigger_axis = (-1 * left + right) / 2
-            
+
         elif platform_id == WINDOWS:
             trigger_axis = -1 * self.joystick.get_axis(TRIGGERS)
-            
+
         return trigger_axis
 
     def get_pad(self):
         """
-        The d-pad returns a tuple in the form (up, right, down, left) where each value will be 1
-        if pressed, 0 otherwise. It is possible to have up to two 1s in the returned tuple.
+        The directional-pad returns a tuple in the form (up, right, down, left)
+        where each value will be 1 if pressed, 0 otherwise. Pads are 8-directional,
+        so it is possible to have up to two 1s in the returned tuple.
         """
 
         if platform_id == LINUX or platform_id == WINDOWS:
@@ -243,6 +246,7 @@ class Controller:
                 left = 1
             elif x == 1:
                 right = 1
+
             if y == -1:
                 down = 1
             elif y == 1:

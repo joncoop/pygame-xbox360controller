@@ -9,7 +9,7 @@ On Linux and Windows systems, only Python 3 with Pygame is needed. Mac OSX does 
 #### Tested on:
 
 - Python 3.4.3, 3.5.2 with Pygame 1.9.2, SDL (1, 2, 15)
-- Ubuntu 15.04 & 16.04, Mac OSX 10.9.5, Windows 7, 8
+- Ubuntu 15.04 & 16.04, Windows 7 & 8, Mac OSX 10.9.5
 
 ## Usage
 
