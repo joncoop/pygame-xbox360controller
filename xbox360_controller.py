@@ -74,6 +74,8 @@ elif platform_id == MAC:
     START = 4
     LEFT_STICK_BTN = 6
     RIGHT_STICK_BTN = 7
+
+    #d-pad
     HAT_UP = 0
     HAT_DOWN = 1
     HAT_LEFT = 2
@@ -89,19 +91,45 @@ elif platform_id == MAC:
 
 class Controller:
 
-    def __init__(self, num):
+    def __init__(self, id, dead_zone = 0.15):
+        """
+        Initializes a controller.
 
-        self.joystick = pygame.joystick.Joystick(num)
+        Args:
+            id: The ID of the controller which must be a value from `0` to
+                `pygame.joystick.get_count() - 1`
+            dead_zone: The size of dead zone for the analog sticks (default 0.15)
+        """
+
+        self.joystick = pygame.joystick.Joystick(id)
         self.joystick.init()
-        self.dead_zone = 0.15
+        self.dead_zone = dead_zone
 
+        # Linux and Mac triggers behave funny. See get_triggers().
         self.left_trigger_used = False
         self.right_trigger_used = False
 
     def get_id(self):
+        """
+        Returns:
+            The ID of the controller. This is the same as the ID passed into
+            the initializer.
+        """
+
         return self.joystick.get_id()
 
-    def dead_zone_adjust(self, value):
+    def dead_zone_adjustment(self, value):
+        """
+        Analog sticks likely wont ever return to exact center when released. Without
+        a dead zone, it is likely that a small axis value will cause game objects
+        to drift. This adjusment allows for a full range of input while still
+        allowing a little bit of 'play' in the dead zone.
+
+        Returns:
+            Axis value outside of the dead zone remapped proportionally onto the
+            -1.0 <= value <= 1.0 range.
+        """
+
         if value > self.dead_zone:
             return (value - self.dead_zone) / (1 - self.dead_zone)
         elif value < -self.dead_zone:
@@ -111,7 +139,10 @@ class Controller:
 
     def get_buttons(self):
         """
-        Returns a tuple with the state of each button. 1 is pressed, 0 is unpressed.
+        Gets the state of each button on the controller.
+
+        Returns:
+            A tuple with the state of each button. 1 is pressed, 0 is unpressed.
         """
 
         if platform_id == LINUX:
@@ -158,41 +189,44 @@ class Controller:
 
     def get_left_stick(self):
         """
-        Returns the x & y axes as a tuple such that
+        Gets the state of the left analog stick.
+
+        Returns:
+            The x & y axes as a tuple such that
 
             -1 <= x <= 1 && -1 <= y <= 1
 
-        Negative values are left and up.
-        Positive values are right and down.
+            Negative values are left and up.
+            Positive values are right and down.
         """
 
-        left_stick_x = self.dead_zone_adjust(self.joystick.get_axis(LEFT_STICK_X))
-        left_stick_y = self.dead_zone_adjust(self.joystick.get_axis(LEFT_STICK_Y))
+        left_stick_x = self.dead_zone_adjustment(self.joystick.get_axis(LEFT_STICK_X))
+        left_stick_y = self.dead_zone_adjustment(self.joystick.get_axis(LEFT_STICK_Y))
 
         return (left_stick_x, left_stick_y)
 
     def get_right_stick(self):
         """
-        Returns the x & y axes as a tuple such that
+        Gets the state of the right analog stick.
+
+        Returns:
+            The x & y axes as a tuple such that
 
             -1 <= x <= 1 && -1 <= y <= 1
 
-        Negative values are left and up.
-        Positive values are right and down.
+            Negative values are left and up.
+            Positive values are right and down.
         """
 
-        right_stick_x = self.dead_zone_adjust(self.joystick.get_axis(RIGHT_STICK_X))
-        right_stick_y = self.dead_zone_adjust(self.joystick.get_axis(RIGHT_STICK_Y))
+        right_stick_x = self.dead_zone_adjustment(self.joystick.get_axis(RIGHT_STICK_X))
+        right_stick_y = self.dead_zone_adjustment(self.joystick.get_axis(RIGHT_STICK_Y))
 
         return (right_stick_x, right_stick_y)
 
     def get_triggers(self):
         """
-        The triggers also form an axis. Full left trigger returns -1.0 and full
-        right returns +1.0. If the triggers are pulled simultaneously, then the
-        sum of the trigger pulls is returned.
+        Gets the state of the triggers.
 
-        Notes:
         On Windows, both triggers work additively to return a single axis, whereas
         triggers on Linux and Mac function as independent axes. In this interface,
         triggers will behave additively for all platforms so that pygame controllers
@@ -205,6 +239,11 @@ class Controller:
         On Linux and Mac, trigger axes return 0 if they haven't been used yet. Once
         used, an unpulled trigger returns 1 and pulled returns -1. The trigger_used
         booleans keep the math right for triggers prior to use.
+
+        Returns:
+            A float in the range -1.0 <= value <= 1.0 where -1.0 represents full
+            left and 1.0 represents full right. If the triggers are pulled
+            simultaneously, then the sum of the trigger pulls is returned.
         """
 
         trigger_axis = 0.0
@@ -232,9 +271,12 @@ class Controller:
 
     def get_pad(self):
         """
-        The directional-pad returns a tuple in the form (up, right, down, left)
-        where each value will be 1 if pressed, 0 otherwise. Pads are 8-directional,
-        so it is possible to have up to two 1s in the returned tuple.
+        Gets the state of the directional pad.
+
+        Returns:
+            A tuple in the form (up, right, down, left) where each value will be
+            1 if pressed, 0 otherwise. Pads are 8-directional, so it is possible
+            to have up to two 1s in the returned tuple.
         """
 
         if platform_id == LINUX or platform_id == WINDOWS:
