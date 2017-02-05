@@ -23,70 +23,74 @@ Mac OSX does not have native controller support. The following driver was used. 
 
 1. Download the xbox360controller class to your game folder and import into your game.
 
-  ```python
-  import xbox360_controller
-  ```
+    ```python
+    import xbox360_controller
+    ```
 
 2. Create a controller object.
 
-  ```python
-  controller = xbox360_controller.Controller(0)
-  ```
+    ```python
+    controller = xbox360_controller.Controller(0)
+    ```
 
 3. Get the controller values.
 
-  To get button values, use the `get_buttons()` function which returns a sequence of boolean values representing the state of every button on the controller. Use the button constant values to index the array. A True value means the that button is pressed.
+    To get button values, use the `get_buttons()` function which returns a sequence of boolean values representing the state of every button on the controller. Use the button constant values to index the array. A True value means that the button is pressed.
 
-  ```python
-  pressed = controller.get_buttons()
-  ```
+    ```python
+    pressed = controller.get_buttons()
 
-  Each analog stick returns a tuple containing the `x` and `y` values of the axis. The values are in the range -1 <= value <= 1 where negative values represent the left and up directions and positive values represent down and right directions.
+    if pressed[xbox360_controller.START]:
+        play()
+    ```
 
-  ```python
-  lt_x, rt_x = controller.get_left_stick()
-  rt_x, rt_x = controller.get_left_stick()
-  ```
+    The following xbox360_controller button constants are supported:
+    `A`, `B`, `X`, `Y`, `LEFT_BUMP`, `RIGHT_BUMP`, `BACK`, `START`, `LEFT_STICK_BTN`, and `RIGHT_STICK_BTN`.
 
-  The `get_triggers()` function returns a single value indicating the direction of the triggers. -1 indicates full left trigger and 1 indicates full right trigger. Note that triggers are additive. Therefore pulling both triggers fully together will result in a value of zero.
+    Each analog stick returns a tuple of `float` values containing the `x` and `y` values of the axis. The values are in the range `-1.0 <= value <= 1.0` where negative values represent the left and up directions and positive values represent down and right directions.
 
-  ```python
-  triggers = controller.get_triggers()
-  ```
+    ```python
+    left_x, left_y = controller.get_left_stick()
+    right_x, right_y = controller.get_right_stick()
+    ```
+
+    To get directional pad values, use the `get_dpad()` function which returns a sequence of boolean values representing each of the four directions on the d-pad in the order up, right, down, left. A True value means that the D-pad is pressed in that direction. The D-pad is 8-directional, so it is possible that two directions return True at the same time.
+
+    ```python
+    d_up, d_right, d_down, d_left = controller.get_dpad()
+    ```
+
+    The `get_triggers()` function returns a single `float` value in the range `-1.0 <= value <= 1.0`. A value of `-1.0` indicates full left trigger and `1.0` indicates full right trigger. Note that triggers are additive. Therefore pulling both triggers fully together will result in a value of `0`.
+
+    ```python
+    triggers = controller.get_triggers()
+    ```
 
 4. Make something awesome!
 
-  ```python
-  if pressed[xbox360_controller.START]:
-      play()
-  ```
-
-  The following xbox360_controller button constants are supported:
-  `A`, `B`, `X`, `Y`, `LEFT_BUMP`, `RIGHT_BUMP`, `BACK`, `START`, `LEFT_STICK_BTN`, and `RIGHT_STICK_BTN`.
-
-See `simple_game_template.py` for an example of usage within a pygame project.
+    See `simple_game_template.py` for an example of usage within a pygame project.
 
 ## Files:
 
-### xbox360_controller.py
+#### xbox360_controller.py
 
 The controller class which can be used in pygame projects.
 
-### visualizer.py
+#### visualizer.py
 
-See the values returned by an xbox360_controller object on a graphical mockup of the controller.
+See the values returned by an `xbox360_controller` object on a graphical mockup of the controller.
 
-### simple_game_template.py
+#### simple_game_template.py
 
 This demonstrates usage of the `xbox360_controller` class and can be used as a template for a game. Press 'start' to begin the game. The ball in the middle is controlled by the left stick. The 'A' button changes the balls color. Pressing 'back' resets the game.
 
-### test.py
+#### test.py
 
-Plug in a controller and check the raw values returned by each button/axis. This is just slightly modified joystick example code from the joystick documentation page. This does not use the xbox360_controller. Rather, it can be used to see how inputs are mapped on different platforms.
+Plug in a controller and check the raw values returned by each button/axis. This is just slightly modified joystick example code from the joystick documentation page. This does not use the `xbox360_controller`. Rather, it can be used to see how inputs are mapped on different platforms.
 
 ## Author
 
-joncoop
+[joncoop](https://github.com/joncoop)
 
 ## License
 
