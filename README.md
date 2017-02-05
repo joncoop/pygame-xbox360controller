@@ -41,13 +41,13 @@ Mac OSX does not have native controller support. The following driver was used. 
     pressed = controller.get_buttons()
 
     if pressed[xbox360_controller.START]:
-        *do something*
+        do_something()
     ```
 
     The following `xbox360_controller` button constants are supported:
     `A`, `B`, `X`, `Y`, `LEFT_BUMP`, `RIGHT_BUMP`, `BACK`, `START`, `LEFT_STICK_BTN`, and `RIGHT_STICK_BTN`.
 
-    Each analog stick returns a tuple of float values containing the x and y values of the axis. The values are in the range `-1.0 <= *value* <= 1.0` where negative values represent the left and up directions and positive values represent down and right directions.
+    Each analog stick returns a tuple of float values containing the x and y values of the axis. The values are in the range `-1.0 <= value <= 1.0` where negative values represent the left and up directions and positive values represent down and right directions.
 
     ```python
     left_x, left_y = controller.get_left_stick()
@@ -60,7 +60,7 @@ Mac OSX does not have native controller support. The following driver was used. 
     dpad_up, dpad_right, dpad_down, dpad_left = controller.get_dpad()
     ```
 
-    The `get_triggers()` function returns a single float value in the range `-1.0 <= *value* <= 1.0`. A value of '-1.0' indicates full left trigger and '1.0' indicates full right trigger. Note that triggers are additive. Therefore pulling both triggers fully together will result in a value of '0'.
+    The `get_triggers()` function returns a single float value in the range `-1.0 <= value <= 1.0`. A value of '-1.0' indicates full left trigger and '1.0' indicates full right trigger. Note that triggers are additive. Therefore pulling both triggers fully together will result in a value of '0'.
 
     ```python
     triggers = controller.get_triggers()
