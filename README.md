@@ -72,17 +72,17 @@ On Linux and Windows systems, only Python 3 with Pygame is needed. Mac OSX does 
 
   See the values returned by an `xbox360_controller` object on a graphical mockup of the controller.
 
-- `simple_game_template.py`
+- `simple_game.py`
 
   This demonstrates basic usage of the `xbox360_controller` class and can be used as a template for a game. Press 'start' to begin the game. The ball is controlled by the left stick. The 'A' button changes the ball's color. Pressing 'back' resets the game.
 
 - `test.py`
 
-  Plug in a controller and check the raw values returned by each button/axis. This is just slightly modified joystick example code from the joystick documentation page. This does not use the `xbox360_controller`. Rather, it can be used to see how inputs are mapped on different platforms.
+  Plug in a controller and check out the raw values returned by each button/axis. This is just slightly modified example code from the official [Pygame joystick documentation](https://www.pygame.org/docs/ref/joystick.html). The `xbox360_controller` class is not used here. Rather, it is a useful tool to see how inputs are mapped on different platforms.
 
 ## Author
 
-Designed and built by [joncoop](https://github.com/joncoop) made this. He hopes you use it to make something cool.
+Designed and built by [joncoop](https://github.com/joncoop). He hopes you use this to make something cool.
 
 ## License
 
@@ -91,5 +91,4 @@ This project is distributed under the [MIT License](LICENSE.md).
 ## Acknowledgments
 
 - Thanks to Nathan for doing the testing on his Mac.
-- Thanks to Weston for getting Pygame configured on Nathan's Mac. Nathan sure hates that command-line stuff.
 - Thanks to [Max](https://github.com/DovahRahDoLu) for testing with wireless controllers on Windows.
