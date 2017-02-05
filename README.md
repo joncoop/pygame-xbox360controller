@@ -8,6 +8,8 @@ On Linux and Windows systems, only Python 3 with Pygame is needed. Mac OSX does 
 
 #### Tested on:
 
+> The current version is a significant rewrite of the original Xbox360Controller module. It has been thoroughly retested on Ubuntu but not on the Windows and Mac platforms. Assuming I didn't make any errors reorganizing code, it *should* still work as tested originally. It might take me a couple days to get access to Window and Mac platforms to verify.
+
 - Python 3.4.3, 3.5.2 with Pygame 1.9.2, SDL (1, 2, 15)
 - Ubuntu 15.04 & 16.04, Windows 7 & 8, Mac OSX 10.9.5
 
