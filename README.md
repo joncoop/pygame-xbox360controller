@@ -72,21 +72,21 @@ Mac OSX does not have native controller support. The following driver was used. 
 
 ## Files:
 
-##### `xbox360_controller.py`
+##### xbox360_controller.py
 
-This file contains the Controller class which can be used in Pygame projects.
+  This file contains the Controller class which can be used in Pygame projects.
 
-##### `visualizer.py`
+##### visualizer.py
 
-See the values returned by an `xbox360_controller` object on a graphical mockup of the controller.
+  See the values returned by an `xbox360_controller` object on a graphical mockup of the controller.
 
-##### `simple_game_template.py`
+##### simple_game_template.py
 
-This demonstrates basic usage of the `xbox360_controller` class and can be used as a template for a game. Press 'start' to begin the game. The ball is controlled by the left stick. The 'A' button changes the ball's color. Pressing 'back' resets the game.
+  This demonstrates basic usage of the `xbox360_controller` class and can be used as a template for a game. Press 'start' to begin the game. The ball is controlled by the left stick. The 'A' button changes the ball's color. Pressing 'back' resets the game.
 
-##### `test.py`
+##### test.py
 
-Plug in a controller and check the raw values returned by each button/axis. This is just slightly modified joystick example code from the joystick documentation page. This does not use the `xbox360_controller`. Rather, it can be used to see how inputs are mapped on different platforms.
+  Plug in a controller and check the raw values returned by each button/axis. This is just slightly modified joystick example code from the joystick documentation page. This does not use the `xbox360_controller`. Rather, it can be used to see how inputs are mapped on different platforms.
 
 ## Author
 
