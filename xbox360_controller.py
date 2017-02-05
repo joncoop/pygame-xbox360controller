@@ -75,11 +75,11 @@ elif platform_id == MAC:
     LEFT_STICK_BTN = 6
     RIGHT_STICK_BTN = 7
 
-    #d-pad
-    HAT_UP = 0
-    HAT_DOWN = 1
-    HAT_LEFT = 2
-    HAT_RIGHT = 3
+    # d-pad
+    PAD_UP = 0
+    PAD_DOWN = 1
+    PAD_LEFT = 2
+    PAD_RIGHT = 3
 
     # axes
     LEFT_STICK_X = 0
@@ -280,24 +280,17 @@ class Controller:
         """
 
         if platform_id == LINUX or platform_id == WINDOWS:
-            up, right, down, left = 0, 0, 0, 0
+            hat_x, hat_y = self.joystick.get_hat(0)
 
-            x, y = self.joystick.get_hat(0)
-
-            if x == -1:
-                left = 1
-            elif x == 1:
-                right = 1
-
-            if y == -1:
-                down = 1
-            elif y == 1:
-                up = 1
+            up = int(hat_y == 1)
+            right = int(hat_x == 1)
+            down = int(hat_y == -1)
+            left = int(hat_x == -1)
 
         elif platform_id == MAC:
-            up = self.joystick.get_button(HAT_UP)
-            right = self.joystick.get_button(HAT_RIGHT)
-            down = self.joystick.get_button(HAT_DOWN)
-            left = self.joystick.get_button(HAT_LEFT)
+            up = self.joystick.get_button(PAD_UP)
+            right = self.joystick.get_button(PAD_RIGHT)
+            down = self.joystick.get_button(PAD_DOWN)
+            left = self.joystick.get_button(PAD_LEFT)
 
         return up, right, down, left
