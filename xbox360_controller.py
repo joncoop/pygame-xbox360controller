@@ -30,7 +30,7 @@ if platform_id == LINUX:
     RIGHT_BUMP = 5
     BACK = 6
     START = 7
-    GUIDE = 8
+    # GUIDE = 8
     LEFT_STICK_BTN = 9
     RIGHT_STICK_BTN = 10
 
@@ -154,7 +154,7 @@ class Controller:
                     self.joystick.get_button(RIGHT_BUMP),
                     self.joystick.get_button(BACK),
                     self.joystick.get_button(START),
-                    self.joystick.get_button(GUIDE), # Guide only works on Linux
+                    0, # Unused, since Guide only works on Linux
                     self.joystick.get_button(LEFT_STICK_BTN),
                     self.joystick.get_button(RIGHT_STICK_BTN))
 
@@ -171,17 +171,17 @@ class Controller:
                     self.joystick.get_button(RIGHT_STICK_BTN))
 
         elif platform_id == MAC:
-            return (0,  # Unused
-                    0,  # Unused
-                    0,  # Unused
-                    0,  # Unused
+            return (0, # Unused
+                    0, # Unused
+                    0, # Unused
+                    0, # Unused
                     self.joystick.get_button(START),
                     self.joystick.get_button(BACK),
                     self.joystick.get_button(LEFT_STICK_BTN),
                     self.joystick.get_button(RIGHT_STICK_BTN),
                     self.joystick.get_button(LEFT_BUMP),
                     self.joystick.get_button(RIGHT_BUMP),
-                    0,  # Unused
+                    0, # Unused
                     self.joystick.get_button(A),
                     self.joystick.get_button(B),
                     self.joystick.get_button(X),
