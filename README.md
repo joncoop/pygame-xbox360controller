@@ -12,12 +12,12 @@ Mac OSX does not have native controller support. The following driver was used. 
 
 ## Tested on:
 
-Python 3.4.3 with
-Pygame 1.9.2, SDL (1, 2, 15)
+- Python 3.4.3, 3.5.2 with
+- Pygame 1.9.2, SDL (1, 2, 15)
 
-Mac OSX 10.9.5,
-Ubuntu 15.04, 16.04
-Windows 7
+- Mac OSX 10.9.5,
+- Ubuntu 15.04, 16.04
+- Windows 7
 
 ## Usage
 
@@ -46,6 +46,9 @@ Windows 7
       play()
   ```
 
+  The following xbox360_controller button constants are supported:
+  `A`, `B`, `X`, `Y`, `LEFT_BUMP`, `RIGHT_BUMP`, `BACK`, `START`, `LEFT_STICK_BTN`, and `RIGHT_STICK_BTN`.
+
 See `simple_game_template.py` for an example of usage within a pygame project.
 
 ## Files:
@@ -60,15 +63,15 @@ See the values returned by an xbox360_controller object on a graphical mockup of
 
 ### simple_game_template.py
 
-This demonstrates usage of the xbox360_controler class and can be used as a template for a game. Press 'start' to begin the game. The ball in the middle is controlled by the left stick. Pressing 'back' resets the game.
+This demonstrates usage of the `xbox360_controller` class and can be used as a template for a game. Press 'start' to begin the game. The ball in the middle is controlled by the left stick. The 'A' button changes the balls color. Pressing 'back' resets the game.
 
 ### test.py
 
-Plug in a controller and check the raw values returned by each button/axis. This is just slightly modified joystick example code from the joystick documentation page.
+Plug in a controller and check the raw values returned by each button/axis. This is just slightly modified joystick example code from the joystick documentation page. This does not use the xbox360_controller. Rather, it can be used to see how inputs are mapped on different platforms.
 
 ## Author
 
-Jon Cooper
+joncoop
 
 ## License
 
