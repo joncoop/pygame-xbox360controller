@@ -39,7 +39,7 @@ On Linux and Windows systems, only Python 3 with Pygame is needed. Mac OSX does 
     The following `xbox360_controller` button constants are supported:
     `A`, `B`, `X`, `Y`, `LEFT_BUMP`, `RIGHT_BUMP`, `BACK`, `START`, `LEFT_STICK_BTN`, and `RIGHT_STICK_BTN`.
 
-    The functions `get_left_stick()` and `get_left_stick()` can be used to access the state of each analog stick. Each functin returns a tuple of float values containing the x and y values of the stick's axes. Values are in the range `-1.0 <= value <= 1.0` where negative values represent the left and up directions and positive values represent down and right directions.
+    The functions `get_left_stick()` and `get_left_stick()` can be used to access the state of each analog stick. Each function returns a tuple of float values containing the x and y values of the stick's axes. Values are in the range `-1.0 <= value <= 1.0` where negative values represent the left and up directions and positive values represent down and right directions.
 
     ```python
     left_x, left_y = controller.get_left_stick()
@@ -52,7 +52,7 @@ On Linux and Windows systems, only Python 3 with Pygame is needed. Mac OSX does 
     pad_up, pad_right, pad_down, pad_left = controller.get_pad()
     ```
 
-    The `get_triggers()` function returns a single float value in the range `-1.0 <= value <= 1.0`. A value of `-1.0` indicates full left trigger and `1.0` indicates full right trigger. Note that triggers are additive. Therefore pulling both triggers fully together will result in a value of `0`.
+    The `get_triggers()` function returns the state of the triggers as a single float value in the range `-1.0 <= value <= 1.0`. A value of `-1.0` indicates full left trigger and `1.0` indicates full right trigger. Note that triggers are additive. Therefore pulling both triggers fully together will result in a value of `0`.
 
     ```python
     triggers = controller.get_triggers()
