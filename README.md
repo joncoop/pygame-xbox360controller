@@ -23,22 +23,48 @@ Windows 7
 
 1. Download the xbox360controller class to your game folder and import into your game.
 
-        import xbox360_controller
+  ```python
+  import xbox360_controller
+  ```
 
 2. Create a controller object.
 
-        controller = xbox360_controller.Controller(0)
+  ```python
+  controller = xbox360_controller.Controller(0)
+  ```
 
 3. Get the controller values.
 
-        pressed = controller.get_buttons()
+  ```python
+  pressed = controller.get_buttons()
+  ```
 
 4. Make something awesome!
 
-        if pressed[xbox360_controller.START]:
-            play()
+  ```python
+  if pressed[xbox360_controller.START]:
+      play()
+  ```
 
-See simple_game_template.py for an example of usage within a pygame project.
+See `simple_game_template.py` for an example of usage within a pygame project.
+
+## Files:
+
+### xbox360_controller.py
+
+The controller class which can be used in pygame projects.
+
+### visualizer.py
+
+See the values returned by an xbox360_controller object on a graphical mockup of the controller.
+
+### simple_game_template.py
+
+This demonstrates usage of the xbox360_controler class and can be used as a template for a game. Press 'start' to begin the game. The ball in the middle is controlled by the left stick. Pressing 'back' resets the game.
+
+### test.py
+
+Plug in a controller and check the raw values returned by each button/axis. This is just slightly modified joystick example code from the joystick documentation page.
 
 ## Author
 
@@ -50,6 +76,5 @@ This project is distributed under the MIT License - see the [LICENSE.md](LICENSE
 
 ## Acknowledgments
 
-* Thanks to Nathan for doing the testing on his Mac. 
+* Thanks to Nathan for doing the testing on his Mac.
 * Thanks to Weston for getting Pygame configured on Nathan's Mac. Nathan sure hates that command-line stuff.
-
