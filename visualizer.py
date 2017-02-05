@@ -1,8 +1,8 @@
 #  Copyright (c) 2017 Jon Cooper
-#   
+#
 #  This file is part of pygame-xbox360controller.
 #  Documentation, related files, and licensing can be found at
-# 
+#
 #      <https://github.com/joncoop/pygame-xbox360controller>.
 
 
@@ -63,7 +63,7 @@ while not done:
 
     triggers = controller.get_triggers()
 
-    dpad_up, dpad_right, dpad_down, dpad_left = controller.get_dpad()
+    pad_up, pad_right, pad_down, pad_left = controller.get_pad()
 
     # game logic
 
@@ -76,7 +76,7 @@ while not done:
 
     ''' a, b, x, y '''
     x, y = 450, 120
-    
+
     if a_btn == 1:
         pygame.draw.ellipse(screen, GREEN, [x + 30, y + 60, 25, 25])
     else:
@@ -99,14 +99,14 @@ while not done:
 
     ''' back, start '''
     x, y = 250, 145
-    
+
     if back == 1:
         pygame.draw.ellipse(screen, WHITE, [x, y, 25, 20])
     else:
         pygame.draw.ellipse(screen, WHITE, [x, y, 25, 20], 2)
 
     pygame.draw.ellipse(screen, GREY, [x + 40, y - 10, 40, 40])
-    
+
     if start == 1:
         pygame.draw.ellipse(screen, WHITE, [x + 95, y, 25, 20])
     else:
@@ -114,7 +114,7 @@ while not done:
 
     ''' bumpers '''
     x, y = 100, 50
-    
+
     if lt_bump == 1:
         pygame.draw.rect(screen, WHITE, [x, 50, y, 25])
     else:
@@ -127,17 +127,17 @@ while not done:
 
     ''' triggers '''
     x, y = 210, 60
-    
+
     trigger_x = x + 100 + round(triggers * 100)
     pygame.draw.line(screen, WHITE, [x, y], [x + 200, y])
     pygame.draw.line(screen, WHITE, [trigger_x, y - 10], [trigger_x, y + 10])
 
     ''' left stick '''
     x, y = 65, 100
-    
+
     left_x = x + 50 + round(lt_x * 50)
     left_y = y + 50 + round(lt_y * 50)
-    
+
     pygame.draw.line(screen, WHITE, [x + 60, y], [x + 60, y + 120], 1)
     pygame.draw.line(screen, WHITE, [x, y + 60], [x + 120, y + 60], 1)
     if lt_stick_btn == 0:
@@ -147,33 +147,33 @@ while not done:
 
     ''' right stick '''
     x, y = 330, 190
-    
+
     right_x = x + 50 + round(rt_x * 50)
     right_y = y + 50 + round(rt_y * 50)
-    
+
     pygame.draw.line(screen, WHITE, [x + 60, y], [x + 60, y + 120], 1)
     pygame.draw.line(screen, WHITE, [x, y + 60], [x + 120, y + 60], 1)
     if rt_stick_btn == 0:
         pygame.draw.ellipse(screen, WHITE, [right_x, right_y, 20, 20], 2)
     else:
         pygame.draw.ellipse(screen, WHITE, [right_x, right_y, 20, 20])
-  
+
     ''' hat '''
     x, y = 180, 200
-    
+
     pygame.draw.ellipse(screen, WHITE, [x, y, 100, 100])
-    if dpad_up:
+    if pad_up:
         pygame.draw.ellipse(screen, GREY, [x + 40, y, 20, 20])
-    if dpad_right:
+    if pad_right:
         pygame.draw.ellipse(screen, GREY, [x + 80, y + 40, 20, 20])
-    if dpad_down:
+    if pad_down:
         pygame.draw.ellipse(screen, GREY, [x + 40, y +80, 20, 20])
-    if dpad_left:
+    if pad_left:
         pygame.draw.ellipse(screen, GREY, [x, y + 40, 20, 20])
 
     ''' joystick values '''
     x, y = 50, 370
-    display_text(screen, "BUTTONS".format(a_btn), x, y)
+    display_text(screen, "BUTTONS", x, y)
     display_text(screen, "A: {}".format(a_btn), x, y+ 25)
     display_text(screen, "B: {}".format(b_btn), x, y + 50)
     display_text(screen, "X: {}".format(x_btn), x, y + 75)
@@ -185,16 +185,16 @@ while not done:
     display_text(screen, "LT Stick Btn: {}".format(lt_stick_btn), x, y + 225)
     display_text(screen, "RT Stick Btn: {}".format(rt_stick_btn), x, y + 250)
 
-    display_text(screen, "AXES".format(a_btn), x + 275, y)
+    display_text(screen, "AXES", x + 275, y)
     display_text(screen, "Left Stick: ({}, {})".format(round(lt_x, 2), round(lt_y, 2)), x + 275, y + 25)
     display_text(screen, "Right Stick: ({}, {})".format(round(rt_x, 2), round(rt_y, 2)), x + 275, y + 50)
     display_text(screen, "Triggers: {}".format(round(triggers, 2)), x + 275, y + 75)
 
-    display_text(screen, "HATS".format(a_btn), x + 275, y + 125)
-    display_text(screen, "Up: {}".format(dpad_up), x + 275, y + 150)
-    display_text(screen, "Right: {}".format(dpad_right), x + 275, y + 175)
-    display_text(screen, "Down: {}".format(dpad_down), x + 275, y + 200)
-    display_text(screen, "Left: {}".format(dpad_left), x + 275, y + 225)
+    display_text(screen, "D-PAD", x + 275, y + 125)
+    display_text(screen, "Up: {}".format(pad_up), x + 275, y + 150)
+    display_text(screen, "Right: {}".format(pad_right), x + 275, y + 175)
+    display_text(screen, "Down: {}".format(pad_down), x + 275, y + 200)
+    display_text(screen, "Left: {}".format(pad_left), x + 275, y + 225)
 
     pygame.display.flip()
 

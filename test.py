@@ -1,15 +1,15 @@
-#  Copyright (c) 2015 Jon Cooper
-#   
+#  Copyright (c) 2017 Jon Cooper
+#
 #  This file is part of pygame-xbox360controller.
 #  Documentation, related files, and licensing can be found at
-# 
+#
 #      <https://github.com/joncoop/pygame-xbox360controller>.
 
 
 import pygame
 
 # Colors
-BLACK = ( 0, 0, 0)
+BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 # This is a simple class that will help us print to the screen
@@ -24,21 +24,21 @@ class TextPrint:
         textBitmap = self.font.render(textString, True, WHITE)
         screen.blit(textBitmap, [self.x, self.y])
         self.y += self.line_height
-        
+
     def reset(self):
         self.x = 10
         self.y = 10
         self.line_height = 30
-        
+
     def indent(self):
         self.x += 20
-        
+
     def unindent(self):
         self.x -= 20
-    
+
 
 pygame.init()
- 
+
 # Set the width and height of the screen [width, height]
 size = [500, 800]
 screen = pygame.display.set_mode(size)
@@ -50,7 +50,7 @@ clock = pygame.time.Clock()
 
 # Initialize the joysticks
 pygame.joystick.init()
-    
+
 # Get ready to print
 textPrint = TextPrint()
 
@@ -63,10 +63,6 @@ while done==False:
         if event.type == pygame.QUIT:
             done = True
 
-
-    # Game logic (none yet)
-
-    
     # Drawing code
     screen.fill(BLACK)
     textPrint.reset()
@@ -76,29 +72,29 @@ while done==False:
 
     textPrint.print(screen, "Number of joysticks: {}".format(joystick_count) )
     textPrint.indent()
-    
+
     # For each joystick:
     for i in range(joystick_count):
         joystick = pygame.joystick.Joystick(i)
         joystick.init()
-    
+
         textPrint.print(screen, "Joystick {}".format(i) )
         textPrint.indent()
-    
+
         # Get the name from the OS for the controller/joystick
         name = joystick.get_name()
         textPrint.print(screen, "Joystick name: {}".format(name) )
-        
+
         # Usually axis run in pairs, up/down for one, and left/right for the other.
         axes = joystick.get_numaxes()
         textPrint.print(screen, "Number of axes: {}".format(axes) )
         textPrint.indent()
-        
+
         for i in range( axes ):
             axis = joystick.get_axis( i )
             textPrint.print(screen, "Axis {} value: {:>6.3f}".format(i, axis) )
         textPrint.unindent()
-            
+
         buttons = joystick.get_numbuttons()
         textPrint.print(screen, "Number of buttons: {}".format(buttons) )
         textPrint.indent()
@@ -107,7 +103,7 @@ while done==False:
             button = joystick.get_button( i )
             textPrint.print(screen, "Button {:>2} value: {}".format(i,button) )
         textPrint.unindent()
-            
+
         # Hat switch. All or nothing for direction, not like joysticks.
         # Value comes back in a tuple.
         hats = joystick.get_numhats()
@@ -118,12 +114,12 @@ while done==False:
             hat = joystick.get_hat( i )
             textPrint.print(screen, "Hat {} value: {}".format(i, str(hat)) )
         textPrint.unindent()
-        
+
         textPrint.unindent()
-    
+
     # Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
     clock.tick(REFRESH_RATE)
-    
+
 
 pygame.quit ()

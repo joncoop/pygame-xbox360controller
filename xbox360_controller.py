@@ -228,7 +228,7 @@ class Controller:
             
         return trigger_axis
 
-    def get_dpad(self):
+    def get_pad(self):
         """
         The d-pad returns a tuple in the form (up, right, down, left) where each value will be 1
         if pressed, 0 otherwise. It is possible to have up to two 1s in the returned tuple.
