@@ -1,6 +1,6 @@
 # xBox360 Controller for Python3 with Pygame
 
-This is a unified XBox360 wired controller module for use with Python3 and Pygame. It allows for games be developed and played cross-platform without worrying about how axes and buttons are mapped on different OSs.
+This is a unified XBox360 wired controller module for use with Python3 and Pygame. It allows for games be developed and played cross-platform without worrying about how axes and buttons are mapped on different OSs. The syntax is nearly identical to that used for dealing with the keyboard in Pygame. Therefore, the syntax should be simple and familiar.
 
 ## Requirements
 
@@ -29,6 +29,8 @@ On Linux and Windows systems, only Python 3 with Pygame is needed. Mac OSX does 
 
 3. Get the controller values.
 
+    #### Buttons
+
     The `get_buttons()` function returns a tuple of int values representing the state of every button on the controller. Use the button constants to index the tuple. A value of `1` means that the button is pressed, and `0` is unpressed.
 
     ```python
@@ -38,15 +40,27 @@ On Linux and Windows systems, only Python 3 with Pygame is needed. Mac OSX does 
         do_something()
     ```
 
+    Buttons can also be handled as `JOYBUTTONDOWN` events which have a button attribute.
+
+    ```python
+    if event.type == pygame.JOYBUTTONDOWN:
+        if event.button == xbox360_controller.A:
+            do_something()
+    ```
+
     The following `xbox360_controller` button constants are supported:
     `A`, `B`, `X`, `Y`, `LEFT_BUMP`, `RIGHT_BUMP`, `BACK`, `START`, `LEFT_STICK_BTN`, and `RIGHT_STICK_BTN`.
 
+    #### Joysticks
+    
     The functions `get_left_stick()` and `get_left_stick()` can be used to access the state of each analog stick. Each function returns a tuple of float values containing the x and y values of the stick's axes. Values are in the range `-1.0 <= value <= 1.0` where negative values represent the left and up directions and positive values represent down and right directions.
 
     ```python
     left_x, left_y = my_controller.get_left_stick()
     right_x, right_y = my_controller.get_right_stick()
     ```
+
+    #### Directional pad
 
     The `get_pad()` function returns a tuple of int values representing the state of each of the four directions on the directional-pad in the order up, right, down, left (clockwise). A value of `1` means that the pad is pressed in that direction, and `0` is unpressed. The pad is 8-directional, so it is possible that two directions return `1` at the same time.
 
