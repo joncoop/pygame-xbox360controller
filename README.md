@@ -4,14 +4,18 @@ This is a unified XBox360 wired controller module for use with Python3 and Pygam
 
 ## Requirements
 
-On Linux and Windows systems, only Python 3 with Pygame is needed. Mac OSX does not have native controller support so the [driver from Tattiebogle](http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver) is also requred.
+On Linux and Windows systems, only Python 3 with Pygame is needed.
+
+Mac OSX does not have native controller support so the a driver is needed.
+
+For Mac OS 10.10 (Yosemite) and later, use the driver [360Controller](https://github.com/360Controller/360Controller).
+
+Earlier versions of Mac OS may work with the original driver from [Tattiebogle](http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver). However this driver is no longer maintained.
 
 #### Tested on:
 
-> The current version is a significant rewrite of my original Xbox360Controller module. It has been thoroughly retested on Ubuntu but not on the Windows and Mac platforms yet. Assuming I didn't make any errors reorganizing code, it *should* still work as originally tested. However, it might take me a few days to get access to Window and Mac platforms to verify.
-
 - Python 3.4.3 & 3.5.2 with Pygame 1.9.2, SDL (1, 2, 15)
-- Ubuntu 15.04 & 16.04, Windows 7 & 8, Mac OS 10.9.5
+- Ubuntu 15.04 & 16.04, Windows 7 & 8, Mac OS 10.9.5, 10.10.5.
 
 ## Usage
 
@@ -108,5 +112,5 @@ This project is distributed under the [MIT License](LICENSE.md).
 
 ## Acknowledgments
 
-- Thanks to Nathan for doing the testing on his Mac.
+- Thanks to [Jordan](https://github.com/johoule) and Nathan for doing the testing on Macs.
 - Thanks to [Max](https://github.com/DovahRahDoLu) for testing with wireless controllers on Windows.
