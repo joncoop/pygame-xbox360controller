@@ -1,6 +1,6 @@
 # xBox360 Controller for Python3 with Pygame
 
-This is a unified XBox360 wired controller module for use with Python3 and Pygame. It allows for games be developed and played cross-platform without worrying about how axes and buttons are mapped on different OSs. The syntax is nearly identical to that used for dealing with the keyboard in Pygame. Therefore, the syntax should be simple and familiar.
+This is a unified XBox360 wired controller module for use with Python3 and Pygame. It allows for games be developed and played cross-platform without worrying about how axes and buttons are mapped on different OSs. The syntax is nearly identical to that used for dealing with the keyboard in Pygame so it should be simple and familiar to use.
 
 ## Requirements
 
@@ -57,7 +57,7 @@ Earlier versions of Mac OS may work with the original driver from [Tattiebogle](
 
     #### Joysticks
 
-    The functions `get_left_stick()` and `get_left_stick()` can be used to access the state of each analog stick. Each function returns a tuple of float values containing the x and y values of the stick's axes. Values are in the range `-1.0 <= value <= 1.0` where negative values represent the left and up directions and positive values represent down and right directions.
+    The functions `get_left_stick()` and `get_right_stick()` can be used to access the state of each analog stick. Each function returns a tuple of float values containing the x and y values of the stick's axes. Values are in the range `-1.0 <= value <= 1.0` where negative values represent the left and up directions and positive values represent down and right directions.
 
     ```python
     left_x, left_y = my_controller.get_left_stick()
