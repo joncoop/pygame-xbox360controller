@@ -106,6 +106,10 @@ Earlier versions of Mac OS may work with the original driver from [Tattiebogle](
 
   This demonstrates basic usage of the `xbox360_controller` and can be used as a template for a game. Press 'start' to begin the game. The ball is controlled by the left stick. The 'A' button changes the ball's color. Pressing 'back' resets the game.
 
+#### two_player_game.py
+
+  This is similar to simple_game. This demonstrates how to check that events come from a specific controller before responding.
+
 #### test.py
 
   Plug in a controller and check out the raw values returned by each button/axis. This is just slightly modified example code from the official [Pygame joystick documentation](https://www.pygame.org/docs/ref/joystick.html). The `xbox360_controller` module is not used here. Rather, this module is a useful tool to see how inputs are mapped on different platforms.
