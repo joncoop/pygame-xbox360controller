@@ -52,6 +52,14 @@ Earlier versions of Mac OS may work with the original driver from [Tattiebogle](
             do_something()
     ```
 
+    In multiplayer games, it may be necessary to check the ID of the controller prior to responding to an event. Otherwise, events on one controller could affect the wrong player.
+
+    ```python
+    if event.type == pygame.JOYBUTTONDOWN:
+        if event.button == xbox360_controller.A && event.joy == my_controller.get_id():
+            do_something()
+    ```
+
     The following `xbox360_controller` button constants are supported:
     `A`, `B`, `X`, `Y`, `LEFT_BUMP`, `RIGHT_BUMP`, `BACK`, `START`, `LEFT_STICK_BTN`, and `RIGHT_STICK_BTN`.
 
