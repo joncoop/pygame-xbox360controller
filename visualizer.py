@@ -27,7 +27,7 @@ FPS = 60
 clock = pygame.time.Clock()
 
 # make a controller (should this be in the game loop?)
-controller = xbox360_controller.Controller(0)
+controller = xbox360_controller.Controller()
 
 def display_text(screen, text, x, y):
     my_font = pygame.font.Font(None, 30)

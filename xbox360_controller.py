@@ -90,18 +90,18 @@ elif platform_id == MAC:
     RIGHT_TRIGGER = 5
 
 class Controller:
-
-    def __init__(self, id, dead_zone = 0.15):
+    id_num = 0
+    
+    def __init__(self, dead_zone = 0.15):
         """
-        Initializes a controller.
+        Initializes a controller. IDs for controllers begin at 0 and increment by 1
+        each time a controller is initialized.
 
         Args:
-            id: The ID of the controller which must be a value from `0` to
-                `pygame.joystick.get_count() - 1`
             dead_zone: The size of dead zone for the analog sticks (default 0.15)
         """
-
-        self.joystick = pygame.joystick.Joystick(id)
+        
+        self.joystick = pygame.joystick.Joystick(Controller.id_num)
         self.joystick.init()
         self.dead_zone = dead_zone
 
@@ -109,11 +109,12 @@ class Controller:
         self.left_trigger_used = False
         self.right_trigger_used = False
 
+        Controller.id_num += 1
+
     def get_id(self):
         """
         Returns:
-            The ID of the controller. This is the same as the ID passed into
-            the initializer.
+            The ID of the controller. 
         """
 
         return self.joystick.get_id()
@@ -238,7 +239,7 @@ class Controller:
 
         On Linux and Mac, trigger axes return 0 if they haven't been used yet. Once
         used, an unpulled trigger returns 1 and pulled returns -1. The trigger_used
-        booleans keep the math right for triggers prior to use.
+        booleans keep the math correct for triggers prior to use.
 
         Returns:
             A float in the range -1.0 <= value <= 1.0 where -1.0 represents full

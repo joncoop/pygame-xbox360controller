@@ -24,12 +24,22 @@ FPS = 60
 clock = pygame.time.Clock()
 
 # make a controller
-controller = xbox360_controller.Controller()
+controller1 = xbox360_controller.Controller()
+controller2 = xbox360_controller.Controller()
+
+print(controller1.get_id(), controller2.get_id())
 
 # make a ball
-ball_pos = [290, 290]
-ball_radius = 10
-ball_color = WHITE
+ball_1_pos = [250, 290]
+ball_1_radius = 10
+ball_1_color = WHITE
+
+ball_2_pos = [330, 290]
+ball_2_radius = 10
+ball_2_color = WHITE
+
+# settings
+MAX_SPEED = 5
 
 # game loop
 playing = False
@@ -49,27 +59,39 @@ while not done:
             else:
                 if event.button == xbox360_controller.BACK:
                     playing = False
-                    ball_pos = [290, 290]
+                    ball_1_pos = [250, 290]
+                    ball_2_pos = [330, 290]
 
             # handle events for specific controllers
-            if event.joy == controller.get_id():
+            if event.joy == controller1.get_id():
                 if event.button == xbox360_controller.A:
-                    if ball_color == WHITE:
-                        ball_color = RED
+                    if ball_1_color == WHITE:
+                        ball_1_color = RED
                     else:
-                        ball_color = WHITE
+                        ball_1_color = WHITE
+            elif event.joy == controller2.get_id():
+                if event.button == xbox360_controller.A:
+                    if ball_2_color == WHITE:
+                        ball_2_color = RED
+                    else:
+                        ball_2_color = WHITE
 
     # handle joysticks
-    left_x, left_y = controller.get_left_stick()
+    x1, y1 = controller1.get_left_stick()
+    x2, y2 = controller2.get_left_stick()
 
     # game logic
     if playing:
-        ball_pos[0] += int(left_x * 5)
-        ball_pos[1] += int(left_y * 5)
+        ball_1_pos[0] += int(x1 * MAX_SPEED)
+        ball_1_pos[1] += int(y1 * MAX_SPEED)
+
+        ball_2_pos[0] += int(x2 * MAX_SPEED)
+        ball_2_pos[1] += int(y2 * MAX_SPEED)
 
     # drawing
     screen.fill(BLACK)
-    pygame.draw.circle(screen, ball_color, ball_pos, ball_radius)
+    pygame.draw.circle(screen, ball_1_color, ball_1_pos, ball_1_radius)
+    pygame.draw.circle(screen, ball_2_color, ball_2_pos, ball_2_radius)
 
     # update screen
     pygame.display.flip()
