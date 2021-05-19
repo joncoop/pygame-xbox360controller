@@ -13,11 +13,14 @@ LINUX = 0
 MAC = 1
 WINDOWS = 2
 
-if sys.platform.startswith("lin"):
+platform = sys.platform
+version = int(pygame.version.ver[0])
+
+if platform.startswith("lin"):
     platform_id = LINUX
-elif sys.platform.startswith("darwin"):
+elif platform.startswith("darwin"):
     platform_id = MAC
-elif sys.platform.startswith("win"):
+elif platform.startswith("win"):
     platform_id = WINDOWS
 
 if platform_id == LINUX:
@@ -58,9 +61,15 @@ elif platform_id == WINDOWS:
     # axes
     LEFT_STICK_X = 0
     LEFT_STICK_Y = 1
-    RIGHT_STICK_X = 4
-    RIGHT_STICK_Y = 3
-    TRIGGERS = 2
+    if version == 2:
+        RIGHT_STICK_X = 3
+        RIGHT_STICK_Y = 4
+        LEFT_TRIGGER = 2
+        RIGHT_TRIGGER = 5
+    else:
+        RIGHT_STICK_X = 4
+        RIGHT_STICK_Y = 3
+        TRIGGERS = 2
 
 elif platform_id == MAC:
     # buttons
@@ -89,10 +98,12 @@ elif platform_id == MAC:
     LEFT_TRIGGER = 4
     RIGHT_TRIGGER = 5
 
+
 class Controller:
+
     id_num = 0
     
-    def __init__(self, dead_zone = 0.15):
+    def __init__(self, dead_zone=0.15):
         """
         Initializes a controller. IDs for controllers begin at 0 and increment by 1
         each time a controller is initialized.
@@ -114,7 +125,7 @@ class Controller:
     def get_id(self):
         """
         Returns:
-            The ID of the controller. 
+            The ID of the controller.
         """
 
         return self.joystick.get_id()
@@ -228,14 +239,11 @@ class Controller:
         """
         Gets the state of the triggers.
 
-        On Windows, both triggers work additively to return a single axis, whereas
-        triggers on Linux and Mac function as independent axes. In this interface,
-        triggers will behave additively for all platforms so that pygame controllers
-        will work consistently on each platform.
-
-        Also note that the value returned is on Windows is multiplied by -1 so that
-        negative is to the left and positive to the right to be consistent with
-        stick axes.
+        On Windows with pygame version 1.9, both triggers work additively to act as 
+        a single axis. In all other cases, each trigger functions as an independent
+        axes. In this interface, triggers will behave additively for all platforms 
+        so that pygame controllers will work consistently on each platform and 
+        pygame version.
 
         On Linux and Mac, trigger axes return 0 if they haven't been used yet. Once
         used, an unpulled trigger returns 1 and pulled returns -1. The trigger_used
@@ -266,7 +274,12 @@ class Controller:
             trigger_axis = (-1 * left + right) / 2
 
         elif platform_id == WINDOWS:
-            trigger_axis = -1 * self.joystick.get_axis(TRIGGERS)
+            if version == 2:
+                left = self.joystick.get_axis(LEFT_TRIGGER)
+                right = self.joystick.get_axis(RIGHT_TRIGGER)
+                trigger_axis = (-1 * left + right) / 2
+            else:
+                trigger_axis = -1 * self.joystick.get_axis(TRIGGERS)
 
         return trigger_axis
 

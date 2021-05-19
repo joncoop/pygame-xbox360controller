@@ -35,13 +35,13 @@ def display_text(screen, text, x, y):
     screen.blit(output, [x, y])
 
 # game loop
-done = False
+running = True
 
-while not done:
+while running:
     # event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            done=True
+            running = False
 
     # joystick stuff
     pressed = controller.get_buttons()
@@ -64,8 +64,6 @@ while not done:
     triggers = controller.get_triggers()
 
     pad_up, pad_right, pad_down, pad_left = controller.get_pad()
-
-    # game logic
 
 
     # drawing

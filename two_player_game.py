@@ -43,13 +43,13 @@ MAX_SPEED = 5
 
 # game loop
 playing = False
-done = False
+running = True
 
-while not done:
+while running:
     # event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            done=True
+            running = False
 
         if event.type == pygame.JOYBUTTONDOWN:
             # handle events for all controllers

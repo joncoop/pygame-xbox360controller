@@ -1,21 +1,19 @@
-# xBox360 Controller for Python3 with Pygame
+# xBox360 Controller for Python 3 with Pygame
 
-This is a unified XBox360 wired controller module for use with Python3 and Pygame. It allows for games be developed and played cross-platform without worrying about how axes and buttons are mapped on different OSs. The syntax is nearly identical to that used for dealing with the keyboard in Pygame so it should be simple and familiar to use.
+This is a unified XBox360 wired controller module for use with Python 3 and Pygame. It allows for games be developed and played cross-platform without worrying about how axes and buttons are mapped on different OSs. The syntax is nearly identical to that used for dealing with the keyboard in Pygame so it should be simple and familiar to use.
 
 ## Requirements
 
-On Linux and Windows systems, only Python 3 with Pygame is needed.
+### Windows
+Both Pygame 1.9 and Pygame 2.0 are supported.
 
-Mac OSX does not have native controller support so the a driver is needed.
+### Linux
+This works with Pygame 1.9. It has not been tested on Pygame 2.0 yet.
 
-For Mac OS 10.10 (Yosemite) and later, use the driver [360Controller](https://github.com/360Controller/360Controller).
+### Mac
+Mac OSX does not have native controller support so the a driver is needed. For Mac OS 10.10 (Yosemite), use the driver [360Controller](https://github.com/360Controller/360Controller). I haven't yet found a driver for Mac OS 10.11 or later. Earlier versions of Mac OS may work with the original driver from [Tattiebogle](http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver). However this driver is no longer maintained.
 
-Earlier versions of Mac OS may work with the original driver from [Tattiebogle](http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver). However this driver is no longer maintained.
-
-#### Tested on:
-
-- Python 3.4.3 & 3.5.2 with Pygame 1.9.2, SDL (1, 2, 15)
-- Ubuntu 15.04 & 16.04, Windows 7 & 8, Mac OS 10.9.5, 10.10.5.
+This works with Pygame 1.9. It has not been tested on Pygame 2.0 yet.
 
 ## Usage
 
@@ -25,10 +23,10 @@ Earlier versions of Mac OS may work with the original driver from [Tattiebogle](
     import xbox360_controller
     ```
 
-2. Create a `Controller` object. The `id` argument must be a value from `0` to `pygame.joystick.get_count() - 1`.
+2. Create a `Controller` object.
 
     ```python
-    my_controller = xbox360_controller.Controller(0)
+    my_controller = xbox360_controller.Controller()
     ```
 
 3. Get the controller values.

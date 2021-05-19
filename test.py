@@ -55,13 +55,13 @@ pygame.joystick.init()
 textPrint = TextPrint()
 
 # Game Loop
-done = False
+running = True
 
-while done==False:
+while running:
     # Event processing
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            done = True
+            running = False
 
     # Drawing code
     screen.fill(BLACK)
