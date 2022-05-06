@@ -62,9 +62,9 @@ elif platform_id == WINDOWS:
     LEFT_STICK_X = 0
     LEFT_STICK_Y = 1
     if version == 2:
-        RIGHT_STICK_X = 3
-        RIGHT_STICK_Y = 4
-        LEFT_TRIGGER = 2
+        RIGHT_STICK_X = 2
+        RIGHT_STICK_Y = 3
+        LEFT_TRIGGER = 4
         RIGHT_TRIGGER = 5
     else:
         RIGHT_STICK_X = 4
